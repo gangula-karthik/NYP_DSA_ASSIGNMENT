@@ -17,13 +17,13 @@ def drawTriangle(points, myTurtle):
 
 def initialize_color_list():
     """
-    Generates a list of 6 random colors in hexadecimal format, and ensures that the color is not repeated.
+    Generates a list of 7 random colors in hexadecimal format, and ensures that the color is not repeated.
 
     Returns:
-    list[str]: A list of 6 strings representing the hexadecimal values of the colors.
+    list[str]: A list of 7 strings representing the hexadecimal values of the colors.
     """
     color_list = set()
-    for i in range(6):
+    for i in range(7):
         # Generate random HSL values
         h, s, l = (random.random() for _ in range(3))
         # Convert HSL to RGB values
