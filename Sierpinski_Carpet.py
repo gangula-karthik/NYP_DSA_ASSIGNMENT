@@ -1,3 +1,8 @@
+# NAME: GANGULA KARTHIK 
+# ADMISSION_NO: 223715Y
+# TUTORIAL_GROUP: BA2202
+############################################################################################################
+
 import turtle
 import random 
 import colorsys
