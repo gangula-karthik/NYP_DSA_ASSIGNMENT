@@ -22,7 +22,7 @@ def initialize_color_list():
     Returns:
     list[str]: A list of 7 strings representing the hexadecimal values of the colors.
     """
-    color_list = set()
+    color_list = []
     for i in range(7):
         # Generate random HSL values
         h, s, l = (random.random() for _ in range(3))
@@ -32,8 +32,8 @@ def initialize_color_list():
         color = '#%02x%02x%02x' % (int(r*255), int(g*255), int(b*255))
         # Add the colors to the list
         if color not in color_list:
-            color_list.add(color)
-    return list(color_list)
+            color_list.append(color)
+    return color_list
 
 def getMid(p1, p2):
     return ( (p1[0] + p2[0]) / 2, (p1[1] + p2[1]) / 2)
