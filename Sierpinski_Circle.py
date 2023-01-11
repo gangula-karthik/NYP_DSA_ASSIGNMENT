@@ -60,7 +60,7 @@ def main():
     myTurtle.setpos(0,0)
     myTurtle.pendown()
     radius = 150
-    degree = 3
+    degree = 0
     sierpinski_circles(0, 0, radius, degree, myTurtle, color_list)
     myTurtle.hideturtle()
     myWin.exitonclick()
