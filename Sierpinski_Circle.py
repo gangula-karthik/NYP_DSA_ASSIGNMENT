@@ -6,6 +6,8 @@
 import turtle
 import random 
 import colorsys
+import mpmath as mp
+import math
 
 
 def drawCircle(center_x, center_y, radius, myTurtle):
@@ -45,9 +47,9 @@ def sierpinski_circles(center_x, center_y, radius, degree, myTurtle, color_list)
     myTurtle.end_fill() # End filling the circle with the color
     if degree > 0:
         # Draw 3 smaller circles with the same center and radius * 0.5
-        sierpinski_circles(center_x + radius / 2, center_y, radius * 0.5, degree-1, myTurtle, color_list)
-        sierpinski_circles(center_x - radius / 2, center_y, radius * 0.5, degree-1, myTurtle, color_list)
-        sierpinski_circles(center_x, center_y + radius / 2, radius * 0.5, degree-1, myTurtle, color_list)
+        sierpinski_circles(center_x + radius / 2, center_y, (radius*(mp.csc(math.pi/4))) / (1 + mp.csc(math.pi/4)), degree-1, myTurtle, color_list)
+        sierpinski_circles(center_x - radius / 2, center_y, (radius*(mp.csc(math.pi/4))) / (1 + mp.csc(math.pi/4)), degree-1, myTurtle, color_list)
+        sierpinski_circles(center_x, center_y + radius / 2, (radius*(mp.csc(math.pi/4))) / (1 + mp.csc(math.pi/4)), degree-1, myTurtle, color_list)
 
 
 def main():

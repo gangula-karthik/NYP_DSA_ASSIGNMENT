@@ -1,4 +1,6 @@
 import turtle
+import mpmath as mp
+import math
 
 def drawCircle(points, myTurtle, color, radius):
     myTurtle.penup()
@@ -13,7 +15,7 @@ def seirpinski(points, degree, myTurtle, diameter, number):
     list_of_colours = ['blue', 'red', 'green', 'cyan', 'yellow', 'pink', 'white', 'black']
     pi = 3.14159265
 
-    small_radius = (diameter / (1 + 2 ** (1 / 2)))
+    small_radius = (diameter/2*(mp.csc(math.pi/4))) / (1 + mp.csc(math.pi/4))
     positoning = (2 ** (1 / 2)) * small_radius / 2
     r = diameter / 2
     new_diameter = small_radius + 2
