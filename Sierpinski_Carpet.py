@@ -58,7 +58,6 @@ def getMid(p1, p2):
     """
     return ( (p1[0] + p2[0]) / 2, (p1[1] + p2[1]) / 2)
 
-
 def draw_squares(points, degree, myTurtle, color_list):
     """
     Recursively draws a 3x3 grid of squares on the turtle's canvas, with the middle square left blank.
@@ -91,7 +90,6 @@ def draw_squares(points, degree, myTurtle, color_list):
                               [points[0][0] + (i+1)*size/3, points[0][1] + (j+1)*size/3]],
                              degree-1, myTurtle, color_list)
 
-
 def main():
     """
     Draws a 3x3 grid of squares using recursive functions and turtle graphics, with the middle square left blank. The squares are filled with random colors. The program exits when the user clicks on the window.
@@ -115,6 +113,5 @@ def main():
     draw_squares(myPoints, degree, myTurtle, color_list)
     myTurtle.hideturtle() # hide the turtle cursor after drawing is completed
     myWin.exitonclick() # Exit program when user click on window
-
 
 main()
