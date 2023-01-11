@@ -8,7 +8,6 @@ def drawCircle(myRadius, myTurtle):
 
 def draw_circles(myRadius, degree, myTurtle):
     """This function is used to perform recursion"""
-    drawCircle(myRadius, myTurtle)
     if degree > 0:
         newRadius = (myRadius * (2 ** 0.5)) / (1 + (2 ** 0.5))
         for i in range(3):
