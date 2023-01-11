@@ -60,6 +60,51 @@ def seirpinski(points, degree, myTurtle, diameter, number):
             ],
                 degree - 1, myTurtle, new_diameter, number + 1
             )
+        elif number == 3 or (number-4)%3 ==0:
+            seirpinski([
+                [-(small_radius+points[1][0])/2,points[1][1]],
+                [(small_radius+points[1][0]),points[1][1]+small_radius/2],
+
+            ],
+                       degree-1, myTurtle,new_diameter,number+1
+            )
+            seirpinski([
+                [-(small_radius + points[1][0]) / 2, points[1][1]-small_radius],
+                [-(small_radius - points[1][0]), points[1][1]-small_radius/2],
+
+            ],
+                degree - 1, myTurtle, new_diameter,number+1
+            )
+            seirpinski([
+                [(small_radius-points[1][0])/2, points[1][1]-small_radius],
+                [-(small_radius-points[1][0]), points[1][1]-small_radius/2 ],
+            ],
+                degree - 1, myTurtle, new_diameter,number+1
+
+            )
+        elif number == 4 or (number/2)%2 == 0:
+            seirpinski([
+                [-(small_radius+points[1][0])/2,points[1][1]],
+                [(small_radius+points[1][0]),points[1][1]+small_radius/2],
+
+            ],
+                       degree-1, myTurtle,new_diameter,number+1
+
+            )
+            seirpinski([
+                [(small_radius-points[1][0])/2, points[1][1]],
+                [-(small_radius-points[1][0]), points[1][1]+small_radius/2],
+            ],
+                degree - 1, myTurtle, new_diameter,number+1
+
+            )
+            seirpinski([
+                [-(small_radius + points[1][0]) / 2, points[1][1]],
+                [-(small_radius - points[1][0]), points[1][1]-small_radius/2],
+
+            ],
+                degree - 1, myTurtle, new_diameter,number+1
+            )
         
 
 def main():
@@ -71,7 +116,6 @@ def main():
     radius = 150
     degree = 0
     seirpinski([[0, 0], [0, 0]], degree, myTurtle, radius, 1)
-    myTurtle.hideturtle()
 
 
 if __name__ == '__main__':
