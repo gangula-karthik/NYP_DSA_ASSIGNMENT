@@ -1,32 +1,140 @@
-import turtle 
+
+import turtle
+
+def drawCircle(points,myTurtle,colour,r):
+    myTurtle.fillcolor(colour)
+    myTurtle.up() # Pen up
+    myTurtle.goto(points[0][0],points[0][1])
+    myTurtle.down() # Pen down
+    myTurtle.begin_fill()
+    myTurtle.circle(r)
+    myTurtle.end_fill()
 
 
-def drawCircle(myRadius, myTurtle):
-    """This function is used to actually draw each circle"""
-    myTurtle.circle(myRadius) # Draw a circle with the given radius
-    
-
-def draw_circles(myRadius, degree, myTurtle):
-    """This function is used to perform recursion"""
-    
-    if degree > 0:
-        newRadius = (myRadius * (2 ** 0.5)) / (1 + (2 ** 0.5))
-        for i in range(3):
-            drawCircle(newRadius, myTurtle)
-        draw_circles(newRadius, degree - 1, myTurtle) # Call the draw_circles function again
-        
-
-def main(): 
-    """This function is used to call the draw_circles function and do initialization"""
-    myWindow = turtle.Screen # Create a screen
-    turtle.screensize(500, 500) # Set the screen size
-    myTurtle = turtle.Turtle() # Create a turtle 
-    myTurtle.home() # set the coordinates of the turtle to origin
-    myTurtle.speed(6) # Set the speed of the turtle to 0
-    # do something over here
-    drawCircle(150, myTurtle) # Call the drawCircle function
-    draw_circles(150, 2, myTurtle) # Call the draw_circles function
 
 
-if __name__ == "__main__": 
-    main()
+
+def sierpinski(points,degree,myTurtle,diameter,number):
+    list_of_colours=['blue','red','green','cyan','yellow','pink','white','black']
+
+    small_radius=(diameter/(1+2**(1/2)))
+    r = diameter/2
+    new_diameter=small_radius+2
+
+
+    drawCircle(points,myTurtle,list_of_colours[degree],r)
+
+    if degree>0:
+        if number == 1 or (number-1)%4 == 0 :
+            sierpinski([
+                [-(small_radius+points[1][0])/2,points[1][1]],
+                [(small_radius+points[1][0]),points[1][1]+small_radius/2],
+
+            ],
+                       degree-1, myTurtle,new_diameter,number+1
+
+            )
+            sierpinski([
+                [(small_radius-points[1][0])/2, points[1][1]],
+                [-(small_radius-points[1][0]), points[1][1]+small_radius/2],
+            ],
+                degree - 1, myTurtle, new_diameter,number+1
+
+            )
+            sierpinski([
+                [(small_radius-points[1][0])/2, points[1][1]-small_radius],
+                [-(small_radius-points[1][0]), points[1][1]-small_radius/2 ],
+            ],
+                degree - 1, myTurtle, new_diameter,number+1
+
+            )
+
+        elif number == 2 or (number%4!=0 and number%2 ==0):
+
+
+
+            sierpinski([
+                [(small_radius-points[1][0])/2, points[1][1]],
+                [-(small_radius-points[1][0]), points[1][1]+small_radius/2],
+            ],
+                degree - 1, myTurtle, new_diameter,number+1
+
+            )
+            sierpinski([
+                [(small_radius-points[1][0])/2, points[1][1]-small_radius],
+                [-(small_radius-points[1][0]), points[1][1]-small_radius/2 ],
+            ],
+                degree - 1, myTurtle, new_diameter,number+1
+
+            )
+            sierpinski([
+                [-(small_radius+points[1][0])/2,points[1][1]-small_radius],
+                [(small_radius+points[1][0]), points[1][1]-small_radius/2 ],
+
+            ],
+                       degree-1, myTurtle,new_diameter,number+1
+            )
+        elif number == 3 or ((number-4)%3 ==0 and number %3==0):
+            sierpinski([
+                [-(small_radius+points[1][0])/2,points[1][1]],
+                [(small_radius+points[1][0]),points[1][1]+small_radius/2],
+
+            ],
+                       degree-1, myTurtle,new_diameter,number+1
+            )
+            sierpinski([
+                [-(small_radius + points[1][0]) / 2, points[1][1]-small_radius],
+                [(small_radius+points[1][0]),points[1][1]-small_radius/2],
+
+            ],
+                degree - 1, myTurtle, new_diameter,number+1
+            )
+            sierpinski([
+                [(small_radius-points[1][0])/2, points[1][1]-small_radius],
+                [-(small_radius-points[1][0]), points[1][1]-small_radius/2 ],
+            ],
+                degree - 1, myTurtle, new_diameter,number+1
+
+            )
+
+        elif number == 4 or (number/2)%2 == 0:
+
+            sierpinski([
+                [-(small_radius + points[1][0]) / 2, points[1][1]],
+                [(small_radius+points[1][0]), points[1][1]+small_radius/2 ],
+
+            ],
+                degree - 1, myTurtle, new_diameter,number+1
+            )
+            sierpinski([
+                [-(small_radius + points[1][0]) / 2, points[1][1]-small_radius],
+                [(small_radius+points[1][0]),points[1][1]-small_radius/2],
+
+            ],
+                degree - 1, myTurtle, new_diameter, number + 1
+
+            )
+            sierpinski([
+                [(small_radius - points[1][0]) / 2, points[1][1]],
+                [-(small_radius - points[1][0]), points[1][1] + small_radius / 2],
+            ],
+                degree - 1, myTurtle, new_diameter, number + 1
+
+            )
+
+
+
+def main():
+    myTurtle = turtle.Turtle()
+    myTurtle.speed(1000) # adjust the drawing speed here
+    myWin = turtle.Screen()
+    diameter = 300
+    myPoints = [[0,0],[0,diameter/2 ]]
+    degree = 3 # Vary the degree of complexity here
+    number = 1
+# first call of the recursive function
+    sierpinski(myPoints,degree,myTurtle,diameter,number)
+    myTurtle.hideturtle()# hide the turtle cursor after drawing is
+# completed
+    myWin.exitonclick() # Exit program when user click on window
+main()
