@@ -1,11 +1,11 @@
 
 import turtle
 
-def drawCircle(points,myTurtle,colour,r):
+def drawCircle(points, myTurtle, colour, r):
     myTurtle.fillcolor(colour)
-    myTurtle.up() # Pen up
-    myTurtle.goto(points[0][0],points[0][1])
-    myTurtle.down() # Pen down
+    myTurtle.up()
+    myTurtle.goto(*points[0])
+    myTurtle.down()
     myTurtle.begin_fill()
     myTurtle.circle(r)
     myTurtle.end_fill()
@@ -129,7 +129,7 @@ def main():
     myTurtle.speed(1000) # adjust the drawing speed here
     myWin = turtle.Screen()
     diameter = 300
-    myPoints = [[0,0],[0,diameter/2 ]]
+    myPoints = [[0,0],[0,diameter/2]]
     degree = 3 # Vary the degree of complexity here
     number = 1
 # first call of the recursive function
