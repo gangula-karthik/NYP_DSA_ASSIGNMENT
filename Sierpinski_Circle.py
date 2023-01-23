@@ -1,4 +1,7 @@
-
+# NAME: GANGULA KARTHIK 
+# ADMISSION_NO: 223715Y
+# TUTORIAL_GROUP: BA2202
+############################################################################################################
 
 import math
 import turtle
@@ -28,13 +31,25 @@ def initialize_color_list():
 
 
 def drawCircle(points, myTurtle, colour, r):
+    """
+    Draws a filled circle on the screen using the turtle module.
+
+    Parameters:
+    - points (list): A list of two-element tuples representing the (x, y) coordinates of the center of the circle.
+    - myTurtle (Turtle): A turtle object to draw the circle.
+    - colour (str): The color to fill the circle with.
+    - r (float): The radius of the circle.
+
+    Returns:
+    None
+    """
     myTurtle.fillcolor(colour)
-    myTurtle.up()
+    myTurtle.up() # Pen up
     myTurtle.goto(points[0][0],points[0][1])
-    myTurtle.down()
-    # myTurtle.begin_fill()
+    myTurtle.down() # Pen down
+    myTurtle.begin_fill()
     myTurtle.circle(r)
-    # myTurtle.end_fill()
+    myTurtle.end_fill()
 
 
 def sierpinski(points,degree,myTurtle,radius,number, color_list):
@@ -146,12 +161,12 @@ def main():
     radius = 350
     color_list = initialize_color_list()
     myPoints = [[0,0],[0,radius/2]]
-    degree = 4
+    degree = 4 # Vary the degree of complexity here
     number = 1
+    # first call of the recursive function
     sierpinski(myPoints,degree,myTurtle,radius,number, color_list)
     myTurtle.hideturtle()
     myWin.exitonclick()
-
 
 
 main()
