@@ -1,3 +1,5 @@
+
+
 import math
 import turtle
 import random
@@ -30,9 +32,9 @@ def drawCircle(points, myTurtle, colour, r):
     myTurtle.up()
     myTurtle.goto(points[0][0],points[0][1])
     myTurtle.down()
-    myTurtle.begin_fill()
+    # myTurtle.begin_fill()
     myTurtle.circle(r)
-    myTurtle.end_fill()
+    # myTurtle.end_fill()
 
 
 def sierpinski(points,degree,myTurtle,radius,number, color_list):
@@ -141,8 +143,7 @@ def main():
     myTurtle = turtle.Turtle()
     myTurtle.speed(0) 
     myWin = turtle.Screen()
-    myTurtle.setposition(0,0)
-    radius = 400
+    radius = 350
     color_list = initialize_color_list()
     myPoints = [[0,0],[0,radius/2]]
     degree = 4
