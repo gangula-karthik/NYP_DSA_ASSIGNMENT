@@ -1,8 +1,3 @@
-# NAME: GANGULA KARTHIK 
-# ADMISSION_NO: 223715Y
-# TUTORIAL_GROUP: BA2202
-############################################################################################################
-
 import math
 import turtle
 import random
@@ -12,7 +7,6 @@ import colorsys
 def initialize_color_list():
     """
     Generates a list of 7 random colors in hexadecimal format, and ensures that the color is not repeated.
-
     Returns:
     list[str]: A list of 7 strings representing the hexadecimal values of the colors.
     """
@@ -33,13 +27,11 @@ def initialize_color_list():
 def drawCircle(points, myTurtle, colour, r):
     """
     Draws a filled circle on the screen using the turtle module.
-
     Parameters:
     - points (list): A list of two-element tuples representing the (x, y) coordinates of the center of the circle.
     - myTurtle (Turtle): A turtle object to draw the circle.
     - colour (str): The color to fill the circle with.
     - r (float): The radius of the circle.
-
     Returns:
     None
     """
@@ -83,9 +75,6 @@ def sierpinski(points,degree,myTurtle,radius,number, color_list):
             )
 
         elif number == 2 or (number%4!=0 and number%2 ==0):
-
-
-
             sierpinski([
                 [(small_radius-points[1][0])/2, points[1][1]],
                 [-(small_radius-points[1][0]), points[1][1]+small_radius/2]
@@ -161,7 +150,7 @@ def main():
     radius = 350
     color_list = initialize_color_list()
     myPoints = [[0,0],[0,radius/2]]
-    degree = 4 # Vary the degree of complexity here
+    degree = 3 # Vary the degree of complexity here
     number = 1
     # first call of the recursive function
     sierpinski(myPoints,degree,myTurtle,radius,number, color_list)

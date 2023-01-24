@@ -108,7 +108,7 @@ def main():
     color_list = initialize_color_list()
     # 2 points of the first square based on [x,y] coordinates
     myPoints = [[-200, -200], [200, 200]]
-    degree = 3 # Vary the degree of complexity here
+    degree = 2 # Vary the degree of complexity here
     # first call of the recursive function
     draw_squares(myPoints, degree, myTurtle, color_list)
     myTurtle.hideturtle() # hide the turtle cursor after drawing is completed
