@@ -1,4 +1,5 @@
-import math
+import math 
+import time
 import turtle
 import random
 import colorsys
@@ -7,6 +8,7 @@ import colorsys
 def initialize_color_list():
     """
     Generates a list of 7 random colors in hexadecimal format, and ensures that the color is not repeated.
+
     Returns:
     list[str]: A list of 7 strings representing the hexadecimal values of the colors.
     """
@@ -21,141 +23,117 @@ def initialize_color_list():
         # Add the colors to the list
         if color not in color_list:
             color_list.add(color)
-    return list(color_list)
+    return list(color_list)    
 
 
-def drawCircle(points, myTurtle, colour, r):
+def draw_circle(x, y, r, colour, turtle):
     """
-    Draws a filled circle on the screen using the turtle module.
-    Parameters:
-    - points (list): A list of two-element tuples representing the (x, y) coordinates of the center of the circle.
-    - myTurtle (Turtle): A turtle object to draw the circle.
-    - colour (str): The color to fill the circle with.
-    - r (float): The radius of the circle.
+    Draws a filled circle with the given radius, color and position using turtle
+
+    Args:
+    x (int): the x-coordinate of the center of the circle
+    y (int): the y-coordinate of the center of the circle
+    r (int): the radius of the circle
+    colour (str): the color of the circle in hexadecimal format
+    turtle (turtle.Turtle): the turtle object used to draw the circle
+    """
+    turtle.penup()
+    turtle.setpos(x, y)
+    turtle.pendown()
+    turtle.fillcolor(colour)
+    turtle.begin_fill()
+    turtle.circle(r)
+    turtle.end_fill()
+
+
+def sierpinski_circle(turtle, big_r, degree, point, pattern, colors):
+    """
+    Draws the Sierpinski Circle fractal using turtle library
+
+    Args:
+    turtle (turtle.Turtle): the turtle object used to draw the fractal
+    big_r (int): the radius of the big circle
+    degree (int): the degree of recursion for the fractal
+    point (list): the x, y coordinates of the center of the big circle
+    pattern (dict): a dictionary containing the pattern of the fractal
+    colors (list): a list of colors in hexadecimal format to fill the circles
+    """
+    draw_circle(point[0], point[1], big_r, colors[degree % len(colors)], turtle)
+    small_r = big_r / (1 + math.sqrt(2))
+    if degree > 0:
+        quadrants = get_quadrants(point, small_r, big_r, pattern[degree])
+        for quadrant in quadrants.values():
+            draw_circle(quadrant[0], quadrant[1], small_r, colors[degree % len(colors)], turtle)
+            sierpinski_circle(turtle, small_r, degree - 1, quadrant, pattern, colors)
+
+
+
+def get_quadrants(point, small_r, big_r, pattern): 
+    """
+    Generates a dictionary of quadrants coordinates to be used in the Sierpinski Circle fractal
+
+    Args:
+    point (list): the x, y coordinates of the center of the big circle
+    small_r (int): the radius of the small circles
+    big_r (int): the radius of the big circle
+    pattern (list): a list of integers representing the pattern of the fractal
+
     Returns:
-    None
+    dict: A dictionary of quadrants coordinates {quadrant: (x,y)}
     """
-    myTurtle.fillcolor(colour)
-    myTurtle.up() # Pen up
-    myTurtle.goto(points[0][0],points[0][1])
-    myTurtle.down() # Pen down
-    myTurtle.begin_fill()
-    myTurtle.circle(r)
-    myTurtle.end_fill()
+    x, y = point
+    quadrants = {
+        "I": (x + small_r, y + big_r),
+        "II": (x + small_r, y + big_r - (2 * small_r)), 
+        "III": (x - small_r, y + big_r - (2 * small_r)), 
+        "IV": (x - small_r, y + big_r)
+    }
+    quadrants = {quadrant: coordinates for quadrant, coordinates in quadrants.items() if pattern[list("I II III IV".split()).index(quadrant)] == 1}
+    return quadrants
 
 
-def sierpinski(points,degree,myTurtle,radius,number, color_list):
 
-    small_radius = ( radius / (1 + math.sqrt(2)) )
+def pattern_gen(degree, pattern):
+    """
+    Generates the pattern for the Sierpinski Circle fractal
+    Args:
+    degree (int): the degree of recursion for the fractal
+    pattern (List[int]): a list of integers representing the pattern of the fractal
 
-    drawCircle(points,myTurtle,color_list[degree % len(color_list)],radius/2)
+    Returns:
+    dict: A dictionary of patterns {degree: pattern}
+    """
+    patterns = {degree: pattern}
+    for i in range(degree - 1, 0, -1):
+        pos_init = lambda lst: lst.insert(0, lst.pop()) or lst
+        patterns[i] = pos_init(patterns[i + 1].copy())
+    return patterns
 
-    if degree>0:
-        if number == 1 or (number-1)%4 == 0 :
-            sierpinski([
-                [-(small_radius+points[1][0])/2,points[1][1]],
-                [(small_radius+points[1][0]),points[1][1]+small_radius/2]
-            ],
-                       degree-1, myTurtle,small_radius,number+1, color_list
 
-            )
-            sierpinski([
-                [(small_radius-points[1][0])/2, points[1][1]],
-                [-(small_radius-points[1][0]), points[1][1]+small_radius/2]
-            ],
-                degree - 1, myTurtle, small_radius,number+1, color_list
-
-            )
-            sierpinski([
-                [(small_radius-points[1][0])/2, points[1][1]-small_radius],
-                [-(small_radius-points[1][0]), points[1][1]-small_radius/2 ]
-            ],
-                degree - 1, myTurtle, small_radius,number+1, color_list
-
-            )
-
-        elif number == 2 or (number%4!=0 and number%2 ==0):
-            sierpinski([
-                [(small_radius-points[1][0])/2, points[1][1]],
-                [-(small_radius-points[1][0]), points[1][1]+small_radius/2]
-            ],
-                degree - 1, myTurtle, small_radius,number+1, color_list
-
-            )
-            sierpinski([
-                [(small_radius-points[1][0])/2, points[1][1]-small_radius],
-                [-(small_radius-points[1][0]), points[1][1]-small_radius/2 ]
-            ],
-                degree - 1, myTurtle, small_radius,number+1, color_list
-
-            )
-            sierpinski([
-                [-(small_radius+points[1][0])/2,points[1][1]-small_radius],
-                [(small_radius+points[1][0]), points[1][1]-small_radius/2 ]
-
-            ],
-                       degree-1, myTurtle,small_radius,number+1, color_list
-            )
-        elif number == 3 or ((number-4)%3 ==0 and number %3==0):
-            sierpinski([
-                [-(small_radius+points[1][0])/2,points[1][1]],
-                [(small_radius+points[1][0]),points[1][1]+small_radius/2]
-
-            ],
-                       degree-1, myTurtle,small_radius,number+1, color_list
-            )
-            sierpinski([
-                [-(small_radius + points[1][0]) / 2, points[1][1]-small_radius],
-                [(small_radius+points[1][0]),points[1][1]-small_radius/2]
-
-            ],
-                degree - 1, myTurtle, small_radius,number+1, color_list
-            )
-            sierpinski([
-                [(small_radius-points[1][0])/2, points[1][1]-small_radius],
-                [-(small_radius-points[1][0]), points[1][1]-small_radius/2 ]
-            ],
-                degree - 1, myTurtle, small_radius,number+1, color_list
-
-            )
-
-        elif number == 4 or (number/2)%2 == 0:
-
-            sierpinski([
-                [-(small_radius + points[1][0]) / 2, points[1][1]],
-                [(small_radius+points[1][0]), points[1][1]+small_radius/2]
-
-            ],
-                degree - 1, myTurtle, small_radius,number+1, color_list
-            )
-            sierpinski([
-                [-(small_radius + points[1][0]) / 2, points[1][1]-small_radius],
-                [(small_radius+points[1][0]),points[1][1]-small_radius/2]
-            ],
-                degree - 1, myTurtle, small_radius, number + 1, color_list
-            )
-            sierpinski([
-                [(small_radius - points[1][0]) / 2, points[1][1]],
-                [-(small_radius - points[1][0]), points[1][1] + small_radius / 2]
-            ],
-                degree - 1, myTurtle, small_radius, number + 1,   color_list
-            )
 
 
 
 def main():
+    st = time.time()
     myTurtle = turtle.Turtle()
-    myTurtle.speed(0) 
     myWin = turtle.Screen()
-    radius = 350
+    myWin.setup(width=1000, height=1000)
+    myTurtle.speed(0)
+
+    degree = 5
+    big_R = 300
+    point = [0, -250]
+    myQueue = [1, 1, 0, 1]
     color_list = initialize_color_list()
-    myPoints = [[0,0],[0,radius/2]]
-    degree = 3 # Vary the degree of complexity here
-    number = 1
-    # first call of the recursive function
-    sierpinski(myPoints,degree,myTurtle,radius,number, color_list)
+
+    circlePattern = pattern_gen(degree, myQueue)
+
+    sierpinski_circle(myTurtle, big_R, degree, point, circlePattern, color_list)
+    et = time.time()
+
+    print("elapsed time", et - st)
     myTurtle.hideturtle()
     myWin.exitonclick()
-
+  
 
 main()

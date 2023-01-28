@@ -71,20 +71,16 @@ def draw_squares(points, degree, myTurtle, color_list):
     Returns:
     None
     """
-    # Set the color of the turtle based on the degree of recursion
     myTurtle.fillcolor(color_list[degree % len(color_list)])
-    myTurtle.begin_fill() # Begin filling the square with the color
-    # Draw a square based on the 2 points given
+    myTurtle.begin_fill()
     drawSquare(points, myTurtle)
-    myTurtle.end_fill() # End filling the square with the color
+    myTurtle.end_fill()
     
     if degree > 0:
-        # Divide the square into 9 smaller squares and draw them recursively
         size = points[1][0] - points[0][0]
         for i in range(3):
             for j in range(3):
                 if i == 1 and j == 1:
-                    # Skip the middle square
                     continue
                 draw_squares([[points[0][0] + i*size/3, points[0][1] + j*size/3],
                               [points[0][0] + (i+1)*size/3, points[0][1] + (j+1)*size/3]],
@@ -104,14 +100,13 @@ def main():
     myTurtle.speed(0)
     myWin = turtle.Screen()
     myTurtle.speed(0)
-    # getting the colors for the squares
+
     color_list = initialize_color_list()
-    # 2 points of the first square based on [x,y] coordinates
     myPoints = [[-200, -200], [200, 200]]
-    degree = 2 # Vary the degree of complexity here
-    # first call of the recursive function
+    degree = 4 
+
     draw_squares(myPoints, degree, myTurtle, color_list)
-    myTurtle.hideturtle() # hide the turtle cursor after drawing is completed
-    myWin.exitonclick() # Exit program when user click on window
+    myTurtle.hideturtle() 
+    myWin.exitonclick() 
 
 main()
