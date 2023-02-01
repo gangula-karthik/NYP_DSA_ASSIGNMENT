@@ -26,10 +26,7 @@ Sierpinski Circle | Sierpinski Carpet |
 | Sierpinski Triangle |
 | --- |
 | ![Untitled](https://user-images.githubusercontent.com/56480632/215968260-13f67a24-27d2-4988-844b-bd1a61a6b16a.gif) |
-| --- |
 | Sierpinski Circle |
 | ![Untitled2](https://user-images.githubusercontent.com/56480632/215968459-696d52e3-4219-4f4d-bc31-e920200af341.gif) | 
-| --- |
 | Sierpinski Carpet |
-| --- |
 |![Untitled5](https://user-images.githubusercontent.com/56480632/215970776-7ea98782-9ccf-449d-a88c-9fc3123ef651.gif) |
