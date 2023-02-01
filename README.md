@@ -24,4 +24,5 @@ This repository contains solutions to 4 programming problems as part of an assig
 ## Fractals Demo
 | Sierpinski Triangle | Sierpinski Carpet | Sierpinski Circle |
 | --- | --- | --- |
-| ![Untitled](https://user-images.githubusercontent.com/56480632/215968260-13f67a24-27d2-4988-844b-bd1a61a6b16a.gif) | ![Untitled2](https://user-images.githubusercontent.com/56480632/215968459-696d52e3-4219-4f4d-bc31-e920200af341.gif) | ![Untitled4](https://user-images.githubusercontent.com/56480632/215969910-8351f023-f5ef-4d3c-b140-1024ef858c1c.gif) |
+| ![Untitled](https://user-images.githubusercontent.com/56480632/215968260-13f67a24-27d2-4988-844b-bd1a61a6b16a.gif) | ![Untitled2](https://user-images.githubusercontent.com/56480632/215968459-696d52e3-4219-4f4d-bc31-e920200af341.gif) | 
+![Untitled5](https://user-images.githubusercontent.com/56480632/215970776-7ea98782-9ccf-449d-a88c-9fc3123ef651.gif) |
