@@ -22,7 +22,7 @@ This repository contains solutions to 4 programming problems as part of an assig
    ```
    
 ## Fractals Demo
-Sierpinski Circle | Sierpinski Carpet |
+
 | Sierpinski Triangle |
 | --- |
 | ![Untitled](https://user-images.githubusercontent.com/56480632/215968260-13f67a24-27d2-4988-844b-bd1a61a6b16a.gif) |
