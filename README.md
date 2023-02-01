@@ -1,4 +1,4 @@
-# NYP_DSA_ASSIGNMENT
+# NYP DATA STRUCTURES AND ALGORITHMS ASSIGNMENT
 
 This repository contains solutions to 4 programming problems as part of an assignment for the Data Structures and Algorithms (DSA) course at Nanyang Polytechnic (NYP).
 
