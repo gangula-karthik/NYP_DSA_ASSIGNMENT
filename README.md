@@ -18,7 +18,7 @@ This repository contains solutions to 4 programming problems as part of an assig
     
 ## Installing: 
    ```
-   git clone https://github.com/[gangula-karthik]/NYP_DSA_ASSIGNMENT.git
+   git clone https://github.com/gangula-karthik/NYP_DSA_ASSIGNMENT.git
    ```
    
 ## Fractals Demo
