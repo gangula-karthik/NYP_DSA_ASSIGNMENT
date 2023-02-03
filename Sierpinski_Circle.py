@@ -1,5 +1,9 @@
+# NAME: GANGULA KARTHIK 
+# ADMISSION_NO: 223715Y
+# TUTORIAL_GROUP: BA2202
+############################################################################################################
+
 import math 
-import time
 import turtle
 import random
 import colorsys
@@ -26,7 +30,7 @@ def initialize_color_list():
     return list(color_list)    
 
 
-def draw_circle(x, y, r, colour, turtle):
+def draw_circle(x, y, r, colour, myTurtle):
     """
     Draws a filled circle with the given radius, color and position using turtle
 
@@ -37,13 +41,15 @@ def draw_circle(x, y, r, colour, turtle):
     colour (str): the color of the circle in hexadecimal format
     turtle (turtle.Turtle): the turtle object used to draw the circle
     """
-    turtle.penup()
-    turtle.setpos(x, y)
-    turtle.pendown()
-    turtle.fillcolor(colour)
-    turtle.begin_fill()
-    turtle.circle(r)
-    turtle.end_fill()
+    turtle.tracer(False)
+    myTurtle.penup()
+    myTurtle.setpos(x, y)
+    myTurtle.pendown()
+    myTurtle.fillcolor(colour)
+    myTurtle.begin_fill()
+    myTurtle.circle(r)
+    myTurtle.end_fill()
+    turtle.tracer(True)
 
 
 def sierpinski_circle(turtle, big_r, degree, point, pattern, colors):
@@ -112,9 +118,7 @@ def pattern_gen(degree, pattern):
 
 
 
-
 def main():
-    st = time.time()
     myTurtle = turtle.Turtle()
     myWin = turtle.Screen()
     myWin.setup(width=1000, height=1000)
@@ -129,9 +133,6 @@ def main():
     circlePattern = pattern_gen(degree, myQueue)
 
     sierpinski_circle(myTurtle, big_R, degree, point, circlePattern, color_list)
-    et = time.time()
-
-    print("elapsed time", et - st)
     myTurtle.hideturtle()
     myWin.exitonclick()
   

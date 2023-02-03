@@ -8,12 +8,14 @@ import random
 import colorsys
 
 def drawTriangle(points, myTurtle):
+    turtle.tracer(False)
     myTurtle.up() # Pen up
     myTurtle.goto(points[0][0], points[0][1])
     myTurtle.down() # Pen down
     myTurtle.goto(points[1][0], points[1][1])
     myTurtle.goto(points[2][0], points[2][1])
     myTurtle.goto(points[0][0], points[0][1])
+    turtle.tracer(True)
 
 def initialize_color_list():
     """

@@ -18,12 +18,14 @@ def drawSquare(points, myTurtle):
     Returns:
     None
     """
+    turtle.tracer(False)
     myTurtle.up() # Pen up
     myTurtle.goto(points[0][0], points[0][1])
     myTurtle.down() # Pen down
     for i in range(4):
         myTurtle.forward(points[1][0] - points[0][0])
         myTurtle.left(90)
+    turtle.tracer(True)
 
 def initialize_color_list():
     """
@@ -103,7 +105,7 @@ def main():
 
     color_list = initialize_color_list()
     myPoints = [[-200, -200], [200, 200]]
-    degree = 4 
+    degree = 3
 
     draw_squares(myPoints, degree, myTurtle, color_list)
     myTurtle.hideturtle() 
