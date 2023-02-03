@@ -16,7 +16,7 @@ This repository contains solutions to 4 programming problems as part of an assig
     The program implements an efficient algorithm to find all the pairs of elements in an array that add up to a specified target sum.
     
     
-## Installing: 
+## Downloading: 
    ```
    git clone https://github.com/gangula-karthik/NYP_DSA_ASSIGNMENT.git
    ```
